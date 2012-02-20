@@ -1,0 +1,29 @@
+{
+  "name": "pretty-",
+  "preferGlobal": "true",
+  "version": "0.20.0-beta",
+  "author": "Vadim Kiryukhin <vkiryukhin@gmail.com>",
+  "description": "a simple plugin to pretty print or minify XML, JSON and CSS files",
+  "contributors": [ 
+    {
+      "name": "Vadim Kiryukhin",
+      "email": "vkiryukhin@gmail.com"
+    } 
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vkiryukhin/pretty-data"
+  },
+  "keywords": [
+	"pretty print",
+	"beautify",
+	"minify",
+    "XML",
+	"JSON",
+	"CSS"
+  ],
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.4.9"
+  }
+}
