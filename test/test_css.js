@@ -1,8 +1,8 @@
 	
 	var	css   = '.headbg{margin:0 8px;display:none; }a:link,a:focus{   color:#00c }\n /* comment */ a:active{   color:red }',
-		pp_css  = require('../pd').pd.css(css),
-		pp_cssmin_com  = require('../pd').pd.cssmin(css,true),
-		pp_cssmin  = require('../pd').pd.cssmin(css);
+		pp_css  = require('../pretty-data').pd.css(css),
+		pp_cssmin_com  = require('../pretty-data').pd.cssmin(css,true),
+		pp_cssmin  = require('../pretty-data').pd.cssmin(css);
 
 console.log('\n==============================================================================\n');
 console.log('\n/*------- Original CSS string: -------*/\n\n' + css + '\n');

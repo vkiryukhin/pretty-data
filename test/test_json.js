@@ -1,7 +1,7 @@
 	
 	var	json  = '{"menu":{"id": "file","value": \n[1,2,3],\n"popup":{"menuitem":[{"value":    ["one","two"],\n"onclick":"CreateNewDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}',
-		json_pp  = require('../pd').pd.json(json);
-		json_min  = require('../pd').pd.jsonmin(json);
+		json_pp  = require('../pretty-data').pd.json(json);
+		json_min  = require('../pretty-data').pd.jsonmin(json);
 
 console.log('\n==============================================================================\n');
 console.log('\n/*------- Original JSON string: -------*/\n\n' + json + '\n');

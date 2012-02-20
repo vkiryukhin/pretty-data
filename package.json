@@ -1,9 +1,8 @@
 {
-  "name": "pretty-",
-  "preferGlobal": "true",
+  "name": "pretty-data",
   "version": "0.20.0-beta",
   "author": "Vadim Kiryukhin <vkiryukhin@gmail.com>",
-  "description": "a simple plugin to pretty print or minify XML, JSON and CSS files",
+  "description": "plugin to pretty print or minify XML, JSON and CSS files",
   "contributors": [ 
     {
       "name": "Vadim Kiryukhin",

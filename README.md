@@ -18,40 +18,40 @@ the MIT and GPL licenses:
 
 ##Description
 
-* `pd.xml(text )` - pretty print XMLtext; 
+* `pd.xml(data )` - pretty print XML; 
 
-* `pd.json(text)` - pretty print JSON text; 
+* `pd.json(data)` - pretty print JSON; 
 
-* `pd.css(text )` - pretty print CSS text; 
+* `pd.css(data )` - pretty print CSS; 
 
-* `pd.xmlmin(text [, preserveComments] ` - minify XML
-text; 
+* `pd.xmlmin(data [, preserveComments]) ` - minify XML; 
 
-* `pd.jsonmin(text preserveComments)` - minify JSON text;
+* `pd.jsonmin(data)` - minify JSON text;
 
-* `pd.cssmin(text [, preserveComments] )` - minify CSS text; 
+* `pd.cssmin(text [data [, preserveComments] )` - minify CSS text; 
 
 **PARAMETERS:**
 
-`@text` - String; XML, JSON or CSS text to beautify; 
+`@data` - String; XML, JSON or CSS text to beautify; 
 
-`@preserveComments` - 
-Bool (optional, used in npp.minxml and npp.mincss only); Set this flag
-to true to prevent removing comments from @text; 
+`@preserveComments` - Bool (optional, used in npp.minxml and npp.mincss only); 
+                       Set this flag to true to prevent removing comments from @data; 
 
 `@Return` - String;
 
 
 **USAGE:**
 
-`var xml_pp = require(./pd).pd.xml(xml_text); `
+`var xml_pp = require(../pretty-data).pd.xml(data); `
 
-`var xml_min = require(./pd).pd.xmlmin(xml_text [,true]);` 
+`var xml_min = require(../pretty-data).pd.xmlmin(data [,true]);` 
 
-`var json_pp = require(./pd).pd.json(json_text);` 
+`var json_pp = require(../pretty-data).pd.json(data);` 
 
-`var json_min = require(./pd).pd.jsonmin(json_text);` 
+`var json_min = require(../pretty-data).pd.jsonmin(data);` 
 
-`var css_pp = require(./pd).pd.css(css_text); `
+`var css_pp = require(../pretty-data).pd.css(data); `
 
-`var css_min = require(./pd).pd.cssmin(css\text [, true]);`
+`var css_min = require(../pretty-data).pd.cssmin(data [, true]);`
+
+
