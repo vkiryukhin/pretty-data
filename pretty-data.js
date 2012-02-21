@@ -1,7 +1,7 @@
 /**
 * pretty-data - nodejs plugin to pretty-print or minify data in XML, JSON and CSS formats.
 *  
-* Version - 0.20.1
+* Version - 0.20.2
 * Copyright (c) 2012 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/pretty-data/
@@ -27,14 +27,14 @@
 *	
 * USAGE:
 *	
-*	var xml_pp  = require('./pretty-data').pd.xml(xml_text);
-*	var xml_min  = require('./pretty-data').pd.xmlmin(xml_text [,true]);
-*
-*	var json_pp  = require('./pretty-data').pd.json(json_text);
-*	var json_min  = require('./pretty-data').pd.jsonmin(json_text);
-*
-*	var css_pp  = require('./pretty-data').pd.css(css_text);
-*	var css_min  = require('./pretty-data').pd.cssmin(css_text [, true]);
+*	var pd  = require('pretty-data').pd;
+
+*	var xml_pp   = pd.xml(xml_text);
+*	var xml_min  = pd.xmlmin(xml_text [,true]);
+*	var json_pp  = pd.json(json_text);
+*	var json_min = pd.jsonmin(json_text);
+*	var css_pp   = pd.css(css_text);
+*	var css_min  = pd.cssmin(css_text [, true]);
 */
 
 function pp() {

@@ -3,7 +3,7 @@
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON** and **CSS** formats.
 
-**Version** - 0.20.1
+**Version** - 0.20.2
 
 **Copyright** (c) 2012 Vadim Kiryukhin ( vkiryukhin @ gmail.com )
 
@@ -42,16 +42,18 @@ the MIT and GPL licenses:
 
 **USAGE:**
 
-`var xml_pp = require(../pretty-data).pd.xml(data); `
+`var pd = require('pretty-data').pd; `
 
-`var xml_min = require(../pretty-data).pd.xmlmin(data [,true]);` 
+`var xml_pp = pd.xml(data); `
 
-`var json_pp = require(../pretty-data).pd.json(data);` 
+`var xml_min = pd.xmlmin(data [,true]);` 
 
-`var json_min = require(../pretty-data).pd.jsonmin(data);` 
+`var json_pp = pd.json(data);` 
 
-`var css_pp = require(../pretty-data).pd.css(data); `
+`var json_min = pd.jsonmin(data);` 
 
-`var css_min = require(../pretty-data).pd.cssmin(data [, true]);`
+`var css_pp = pd.css(data); `
 
+`var css_min = pd.cssmin(data [, true]);`
 
+              
