@@ -11,8 +11,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/vkiryukhin/pretty-data.git"
+    "url": "http://github.com/vkiryukhin/pretty-data.git"
   },
+  "main":"./pretty-data",
   "keywords": [
 	"pretty print",
 	"beautify",

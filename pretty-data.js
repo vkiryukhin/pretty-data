@@ -1,7 +1,7 @@
 /**
 * pretty-data - nodejs plugin to pretty-print or minify data in XML, JSON and CSS formats.
 *  
-* Version - 0.20.0-beta
+* Version - 0.20.1
 * Copyright (c) 2012 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/pretty-data/
