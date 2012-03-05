@@ -1,7 +1,7 @@
 /**
 * pretty-data - nodejs plugin to pretty-print or minify data in XML, JSON and CSS formats.
 *  
-* Version - 0.20.2
+* Version - 0.30.0
 * Copyright (c) 2012 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/pretty-data/
@@ -13,29 +13,34 @@
 *	pd.xml(data ) - pretty print XML;
 *	pd.json(data) - pretty print JSON;
 *	pd.css(data ) - pretty print CSS;
+*	pd.sql(data)  - pretty print SQL;
 *
 *	pd.xmlmin(data [, preserveComments] ) - minify XML; 
-*	pd.jsonmin(data preserveComments)     - minify JSON; 
+*	pd.jsonmin(data)                      - minify JSON; 
 *	pd.cssmin(data [, preserveComments] ) - minify CSS; 
+*	pd.sqlmin(data)                       - minify SQL; 
 *
 * PARAMETERS:
 *
-*	@data  			- String; XML, JSON or CSS text to beautify;
-* 	@preserveComments	- Bool (optional, used in npp.minxml and npp.mincss only); 
+*	@data  			- String; XML, JSON, CSS or SQL text to beautify;
+* 	@preserveComments	- Bool (optional, used in minxml and mincss only); 
 *				  Set this flag to true to prevent removing comments from @text; 
 *	@Return 		- String;
 *	
 * USAGE:
 *	
 *	var pd  = require('pretty-data').pd;
-
+*
 *	var xml_pp   = pd.xml(xml_text);
 *	var xml_min  = pd.xmlmin(xml_text [,true]);
 *	var json_pp  = pd.json(json_text);
 *	var json_min = pd.jsonmin(json_text);
 *	var css_pp   = pd.css(css_text);
 *	var css_min  = pd.cssmin(css_text [, true]);
+*	var sql_pp   = pd.sql(sql_text);
+*	var sql_min  = pd.sqlmin(sql_text);
 */
+
 
 function pp() {
 	this.shift = ['\n']; // array of shifts
@@ -50,6 +55,8 @@ function pp() {
 
 };	
 	
+// ----------------------- XML section ----------------------------------------------------
+
 pp.prototype.xml = function(text) {
 
 	var ar = text.replace(/>\s{0,}</g,"><").replace(/</g,"~#~<").split('~#~'),
@@ -107,6 +114,8 @@ pp.prototype.xml = function(text) {
 	return  (str[0] == '\n') ? str.slice(1) : str;
 }
 
+// ----------------------- JSON section ----------------------------------------------------
+
 pp.prototype.json = function(text) {
 
 	var ar = text.replace(/\s{0,}\{\s{0,}/g,"{")
@@ -153,6 +162,8 @@ pp.prototype.json = function(text) {
 	return str.replace(/^\n{1,}/,'');
 }
 
+// ----------------------- CSS section ----------------------------------------------------
+
 pp.prototype.css = function(text) {
 
 	var ar = text.replace(/\s{1,}/g,' ')
@@ -186,8 +197,7 @@ pp.prototype.css = function(text) {
 		return str.replace(/^\n{1,}/,'');
 }
 
-//----------------------------------------------------------------------------------
-
+// ----------------------- SQL section ----------------------------------------------------
 
 function isSubquery(str, parenthesisLevel) {
   return  parenthesisLevel - (str.replace(/\(/g,'').length - str.replace(/\)/g,'').length )
@@ -240,7 +250,7 @@ function split_sql(str, tab) {
         .split('~::~');
 }
 
-pp.prototype.sql = function(text, brakeOnComma) {
+pp.prototype.sql = function(text) {
 
     var ar_by_quote = text.replace(/\s{1,}/g," ")
                         .replace(/\'/ig,"~::~\'")
@@ -295,12 +305,7 @@ pp.prototype.sql = function(text, brakeOnComma) {
     return str;
 }
 
-
-
-//----------------------------------------------------------------------------------
-
-
-
+// ----------------------- min section ----------------------------------------------------
 
 pp.prototype.xmlmin = function(text, preserveComments) {
 
@@ -338,6 +343,8 @@ pp.prototype.cssmin = function(text, preserveComments) {
 pp.prototype.sqlmin = function(text) {
     return text.replace(/\s{1,}/g," ").replace(/\s{1,}\(/,"(").replace(/\s{1,}\)/,")");
 }
+
+// --------------------------------------------------------------------------------------------
 
 exports.pd= new pp;	
 
