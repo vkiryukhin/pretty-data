@@ -1,9 +1,9 @@
 # pretty-data
 
 nodejs plugin to **pretty-print** or **minify**
-text in **XML**, **JSON** and **CSS** formats.
+text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
 
-**Version** - 0.20.2
+**Version** - 0.30.0
 
 **Copyright** (c) 2012 Vadim Kiryukhin ( vkiryukhin @ gmail.com )
 
