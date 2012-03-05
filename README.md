@@ -24,15 +24,19 @@ the MIT and GPL licenses:
 
 * `pd.css(data )` - pretty print CSS; 
 
+* `pd.sql(data )` - pretty print SQL; 
+
 * `pd.xmlmin(data [, preserveComments]) ` - minify XML; 
 
 * `pd.jsonmin(data)` - minify JSON text;
 
-* `pd.cssmin(text [data [, preserveComments] )` - minify CSS text; 
+* `pd.cssmin(data [, preserveComments] )` - minify CSS text; 
+
+* `pd.sqlmin(data)` - minify JSON text;
 
 **PARAMETERS:**
 
-`@data` - String; XML, JSON or CSS text to beautify; 
+`@data` - String; XML, JSON, CSS or SQL text to beautify; 
 
 `@preserveComments` - Bool (optional, used in npp.minxml and npp.mincss only); 
                        Set this flag to true to prevent removing comments from @data; 
@@ -56,4 +60,8 @@ the MIT and GPL licenses:
 
 `var css_min = pd.cssmin(data [, true]);`
 
-              
+`var sql_pp = pd.sql(data);` 
+
+`var sql_min = pd.sqlmin(data);` 
+
+
