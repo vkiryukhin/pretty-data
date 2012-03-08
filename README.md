@@ -1,4 +1,4 @@
-# pretty-data
+# pretty-data - Nodejs plugin
 
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
