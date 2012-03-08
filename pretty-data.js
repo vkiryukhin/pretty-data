@@ -1,7 +1,7 @@
 /**
 * pretty-data - nodejs plugin to pretty-print or minify data in XML, JSON and CSS formats.
 *  
-* Version - 0.30.0
+* Version - 0.30.1
 * Copyright (c) 2012 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/pretty-data/
@@ -118,25 +118,15 @@ pp.prototype.xml = function(text) {
 
 pp.prototype.json = function(text) {
 
-	var ar = text.replace(/\s{0,}\{\s{0,}/g,"{")
-				.replace(/\s{0,}\[$/g,"[")
-				.replace(/\[\s{0,}/g,"[")
-		  		.replace(/\s{0,}\}\s{0,}/g,"}")
-				.replace(/\s{0,}\]\s{0,}/g,"]")
-				.replace(/\"\s{0,}\,/g,'",')
-				.replace(/\,\s{0,}\"/g,',"')
-				.replace(/\"\s{0,}:/g,'":')
-				.replace(/:\s{0,}\"/g,':"')
-				.replace(/:\s{0,}\[/g,':[')
-				
-				.replace(/\{/g,"~#~{~#~")
-				.replace(/\[/g,"[~#~")
-				.replace(/\}/g,"~#~}")
-				.replace(/\]/g,"~#~]")
-				.replace(/\"\,/g,'",~#~')
-				.replace(/\,\"/g,',~#~"')
-				.replace(/~#~\s{0,}~#~/g,"~#~")
-				.split('~#~'),
+    var ar = this.jsonmin(text).replace(/\{/g,"~#~{~#~")
+                               .replace(/\[/g,"[~#~")
+                               .replace(/\}/g,"~#~}")
+                               .replace(/\]/g,"~#~]")
+                               .replace(/\"\,/g,'",~#~')
+                               .replace(/\,\"/g,',~#~"')
+                               .replace(/\]\,/g,'],~#~')
+                               .replace(/~#~\s{0,}~#~/g,"~#~")
+                               .split('~#~'),
 				
 		len = ar.length,
 		deep = 0,
@@ -316,16 +306,20 @@ pp.prototype.xmlmin = function(text, preserveComments) {
 
 pp.prototype.jsonmin = function(text) {
 								  
-	return  text.replace(/\s{0,}\{\s{0,}/g,"{")
-				.replace(/\s{0,}\[$/g,"[")
-				.replace(/\[\s{0,}/g,"[")
-				.replace(/:\s{0,}\[/g,':[')
-		  		.replace(/\s{0,}\}\s{0,}/g,"}")
-				.replace(/\s{0,}\]\s{0,}/g,"]")
-				.replace(/\"\s{0,}\,/g,'",')
-				.replace(/\,\s{0,}\"/g,',"')
-				.replace(/\"\s{0,}:/g,'":')
-				.replace(/:\s{0,}\"/g,':"');						  
+    return  text.replace(/\s{0,}\{\s{0,}/g,"{")
+                .replace(/\s{0,}\[$/g,"[")
+                .replace(/\[\s{0,}/g,"[")
+                .replace(/:\s{0,}\[/g,':[')
+                .replace(/\s{0,}\}\s{0,}/g,"}")
+                .replace(/\s{0,}\]\s{0,}/g,"]")
+                .replace(/\"\s{0,}\,/g,'",')
+                .replace(/\,\s{0,}\"/g,',"')
+                .replace(/\"\s{0,}:/g,'":')
+                .replace(/:\s{0,}\"/g,':"')
+                .replace(/:\s{0,}\[/g,':[')
+                .replace(/\,\s{0,}\[/g,',[')
+                .replace(/\,\s{2,}/g,', ')
+                .replace(/\]\s{0,},\s{0,}\[/g,'],[');   
 }
 
 pp.prototype.cssmin = function(text, preserveComments) {
