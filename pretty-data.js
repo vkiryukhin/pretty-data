@@ -44,7 +44,7 @@
 
 function pp() {
 	this.shift = ['\n']; // array of shifts
-	this.step = '  ', // 2 spaces
+	this.step = '    ', // 2 spaces
 		maxdeep = 100, // nesting level
 		ix = 0;
 
@@ -59,7 +59,7 @@ function pp() {
 
 pp.prototype.xml = function(text) {
 
-	var ar = text.replace(/>\s{0,}</g,"><").replace(/</g,"~#~<").split('~#~'),
+	var ar = text.replace(/>\s{0,}</g,"><").replace(/</g,"~::~<").split('~::~'),
 		len = ar.length,
 		inComment = false,
 		deep = 0,
@@ -118,15 +118,15 @@ pp.prototype.xml = function(text) {
 
 pp.prototype.json = function(text) {
 
-    var ar = this.jsonmin(text).replace(/\{/g,"~#~{~#~")
-                               .replace(/\[/g,"[~#~")
-                               .replace(/\}/g,"~#~}")
-                               .replace(/\]/g,"~#~]")
-                               .replace(/\"\,/g,'",~#~')
-                               .replace(/\,\"/g,',~#~"')
-                               .replace(/\]\,/g,'],~#~')
-                               .replace(/~#~\s{0,}~#~/g,"~#~")
-                               .split('~#~'),
+    var ar = this.jsonmin(text).replace(/\{/g,"~::~{~::~")
+                               .replace(/\[/g,"[~::~")
+                               .replace(/\}/g,"~::~}")
+                               .replace(/\]/g,"~::~]")
+                               .replace(/\"\,/g,'",~::~')
+                               .replace(/\,\"/g,',~::~"')
+                               .replace(/\]\,/g,'],~::~')
+                               .replace(/~::~\s{0,}~::~/g,"~::~")
+                               .split('~::~'),
 				
 		len = ar.length,
 		deep = 0,
@@ -157,13 +157,13 @@ pp.prototype.json = function(text) {
 pp.prototype.css = function(text) {
 
 	var ar = text.replace(/\s{1,}/g,' ')
-				.replace(/\{/g,"{~#~")
-				.replace(/\}/g,"~#~}~#~")
-				.replace(/\;/g,";~#~")
-				.replace(/\/\*/g,"~#~/*")
-				.replace(/\*\//g,"*/~#~")
-				.replace(/~#~\s{0,}~#~/g,"~#~")
-				.split('~#~'),
+				.replace(/\{/g,"{~::~")
+				.replace(/\}/g,"~::~}~::~")
+				.replace(/\;/g,";~::~")
+				.replace(/\/\*/g,"~::~/*")
+				.replace(/\*\//g,"*/~::~")
+				.replace(/~::~\s{0,}~::~/g,"~::~")
+				.split('~::~'),
 		len = ar.length,
 		deep = 0,
 		str = '',
