@@ -64,15 +64,6 @@ the MIT and GPL licenses:
 
 `var sql_min = pd.sqlmin(data);` 
 
-**TEST:**
-
-`node ./test/test_xml 
-
-`node ./test/test_json
-
-`node ./test/test_css
-
-`node ./test/test_sql 
 
 
 
