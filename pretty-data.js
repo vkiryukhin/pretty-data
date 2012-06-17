@@ -39,12 +39,18 @@
 *	var css_min  = pd.cssmin(css_text [, true]);
 *	var sql_pp   = pd.sql(sql_text);
 *	var sql_min  = pd.sqlmin(sql_text);
+*
+* TEST:
+*	comp-name:pretty-data$ node ./test/test_xml
+*	comp-name:pretty-data$ node ./test/test_json
+*	comp-name:pretty-data$ node ./test/test_css
+*	comp-name:pretty-data$ node ./test/test_sql
 */
 
 
 function pp() {
 	this.shift = ['\n']; // array of shifts
-	this.step = '    ', // 2 spaces
+	this.step = '  ', // 2 spaces
 		maxdeep = 100, // nesting level
 		ix = 0;
 
@@ -59,7 +65,11 @@ function pp() {
 
 pp.prototype.xml = function(text) {
 
-	var ar = text.replace(/>\s{0,}</g,"><").replace(/</g,"~::~<").split('~::~'),
+	var ar = text.replace(/>\s{0,}</g,"><")
+				 .replace(/</g,"~::~<")
+				 .replace(/xmlns\:/g,"~::~xmlns:")
+				 .replace(/xmlns\=/g,"~::~xmlns=")
+				 .split('~::~'),
 		len = ar.length,
 		inComment = false,
 		deep = 0,
@@ -106,7 +116,13 @@ pp.prototype.xml = function(text) {
 			// <? xml ... ?> //
 			if(ar[ix].search(/<\?/) > -1) { 
 				str += this.shift[deep]+ar[ix];
-			} else {
+			} else 
+			// xmlns //
+			if( ar[ix].search(/xmlns\:/) > -1  || ar[ix].search(/xmlns\=/) > -1) { 
+				str += this.shift[deep]+ar[ix];
+			} 
+			
+			else {
 				str += ar[ix];
 			}
 		}
@@ -118,38 +134,13 @@ pp.prototype.xml = function(text) {
 
 pp.prototype.json = function(text) {
 
-    var ar = this.jsonmin(text).replace(/\{/g,"~::~{~::~")
-                               .replace(/\[/g,"[~::~")
-                               .replace(/\}/g,"~::~}")
-                               .replace(/\]/g,"~::~]")
-                               .replace(/\"\,/g,'",~::~')
-                               .replace(/\,\"/g,',~::~"')
-                               .replace(/\]\,/g,'],~::~')
-                               .replace(/~::~\s{0,}~::~/g,"~::~")
-                               .split('~::~'),
-				
-		len = ar.length,
-		deep = 0,
-		str = '',
-		ix = 0;
-
-	for(ix=0;ix<len;ix++) {
-		if( /\{/.exec(ar[ix]))  { 
-			str += this.shift[deep++]+ar[ix];
-		} else 
-		if( /\[/.exec(ar[ix]))  { 
-			str += this.shift[deep++]+ar[ix];
-		}  else 
-		if( /\]/.exec(ar[ix]))  { 
-			str += this.shift[--deep]+ar[ix];
-		}  else 
-		if( /\}/.exec(ar[ix]))  { 
-			str += this.shift[--deep]+ar[ix];
-		} else {
-			str += this.shift[deep]+ar[ix];
-		}
+	if ( typeof text === "string" ) {
+		return JSON.stringify(JSON.parse(text), null, this.step);
 	}
-	return str.replace(/^\n{1,}/,'');
+	if ( typeof text === "object" ) {
+		return JSON.stringify(text, null, this.step);
+	}
+	return null;
 }
 
 // ----------------------- CSS section ----------------------------------------------------
