@@ -3,7 +3,7 @@
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
 
-**Version** - 0.30.3
+**Version** - 0.40.0
 
 **Copyright** (c) 2012 Vadim Kiryukhin ( vkiryukhin @ gmail.com )
 
@@ -63,5 +63,16 @@ the MIT and GPL licenses:
 `var sql_pp = pd.sql(data);` 
 
 `var sql_min = pd.sqlmin(data);` 
+
+**TEST:**
+
+`node ./test/test_xml 
+
+`node ./test/test_json
+
+`node ./test/test_css
+
+`node ./test/test_sql 
+
 
 
