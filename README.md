@@ -32,7 +32,7 @@ the MIT and GPL licenses:
 
 * `pd.cssmin(data [, preserveComments] )` - minify CSS text; 
 
-* `pd.sqlmin(data)` - minify JSON text;
+* `pd.sqlmin(data)` - minify SQL text;
 
 **PARAMETERS:**
 
