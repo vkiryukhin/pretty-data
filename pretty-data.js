@@ -49,16 +49,24 @@
 
 
 function pp() {
-	this.shift = ['\n']; // array of shifts
-	this.step = '  '; // 2 spaces
-	var maxdeep = 100, // nesting level
-      ix = 0;
+	this.indent = function(indent) {
+		this.shift = ['\n']; // array of shifts
+		var maxdeep = 100, // nesting level
+		ix = 0;
 
-	// initialize array with shifts //
-	for(ix=0;ix<maxdeep;ix++){
-		this.shift.push(this.shift[ix]+this.step); 
+		this.step = '';
+		for(ix=0;ix<indent;ix++){
+			this.step += ' ';
+		}
+
+		// initialize array with shifts //
+		for(ix=0;ix<maxdeep;ix++){
+			this.shift.push(this.shift[ix]+this.step); 
+		}
 	}
-
+	
+	// By default, we use 2 as indentation
+	this.indent(2);
 };	
 	
 // ----------------------- XML section ----------------------------------------------------
