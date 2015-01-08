@@ -65,7 +65,7 @@ function pp() {
 
 pp.prototype.xml = function(text) {
 
-	var ar = text.replace(/>\s{0,}</g,"><")
+	var ar = text.replace(/>\s*<(?!\/)/g,"><")
 				 .replace(/</g,"~::~<")
 				 .replace(/xmlns\:/g,"~::~xmlns:")
 				 .replace(/xmlns\=/g,"~::~xmlns=")
