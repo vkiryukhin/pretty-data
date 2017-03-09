@@ -124,6 +124,10 @@ pp.prototype.xml = function(text) {
 			else {
 				str += ar[ix];
 			}
+			// remove excessive spaces
+			if (!inComment) {
+				str = str.replace(/\s+$/, '');
+			}
 		}
 		
 	return  (str[0] == '\n') ? str.slice(1) : str;
