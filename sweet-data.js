@@ -293,14 +293,4 @@ pp.prototype.sqlmin = function(text) {
     return text.replace(/\s{1,}/g," ").replace(/\s{1,}\(/,"(").replace(/\s{1,}\)/,")");
 }
 
-module.exports = new pp;	
-
-
-
-
-
-
-
-
-
-
+exports.SweetData = new pp;

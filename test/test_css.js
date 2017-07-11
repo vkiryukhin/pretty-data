@@ -1,7 +1,7 @@
 var css   = '.headbg{margin:0 8px;display:none; }a:link,a:focus{   color:#00c }\n /* comment */ a:active{   color:red }',
-    pp_css  = require('../sweet-data').css(css),
-    pp_cssmin_com  = require('../sweet-data').cssmin(css,true),
-    pp_cssmin  = require('../sweet-data').cssmin(css);
+    pp_css  = require('../sweet-data').SweetData.css(css),
+    pp_cssmin_com  = require('../sweet-data').SweetData.cssmin(css,true),
+    pp_cssmin  = require('../sweet-data').SweetData.cssmin(css);
 
 console.log('\n==============================================================================\n');
 console.log('\n/*------- Original CSS string: -------*/\n\n' + css + '\n');
