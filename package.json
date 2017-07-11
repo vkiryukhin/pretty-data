@@ -1,15 +1,11 @@
 {
   "name": "sweet-data",
   "version": "0.0.6",
-  "author": "Brian Gerhards",
+  "author": "Brian Gerhards (https://github.com/bgerhards)",
   "description": "plugin to pretty-print or minify XML, JSON, CSS and SQL files",
-  "contributors": [ 
-    {
-      "name": "Brian"
-    } ,
-    {
-      "name": "Alex"
-    }
+  "contributors": [
+      "Brian Gerhards (https://github.com/bgerhards)",
+      "Alex Staroselsky (https://github.com/alstar01)"
   ],
   "repository": {
     "type": "git",
@@ -17,13 +13,15 @@
   },
   "main":"./sweet-data",
   "keywords": [
-	"pretty print",
-	"beautify",
-	"minify",
-  "XML",
-	"JSON",
-	"CSS",
-  "SQL"
+    "pretty print",
+    "beautify",
+    "minify",
+    "XML",
+    "JSON",
+    "CSS",
+    "SQL",
+    "tabs",
+    "spaces"
   ],
   "license": "MIT",
   "engine": {
