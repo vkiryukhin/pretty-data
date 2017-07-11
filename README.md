@@ -4,8 +4,6 @@
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
 
-**Version** - 0.0.1
-
 **License:** Dual licensed under
 the MIT and GPL licenses:
 
@@ -31,6 +29,9 @@ the MIT and GPL licenses:
 
 * `sd.sqlmin(data)` - minify SQL text;
 
+* `sd.setStep([indentationCount, indentationChar])` - update indentation character(s) and character count (per depth). `SPACE` or `TAB` will use respective characters. Any other character provided will be assumed as ' '. Default values are `SPACE` and 2
+
+
 **PARAMETERS:**
 
 `@data` - String; XML, JSON, CSS or SQL text to beautify; 
@@ -40,6 +41,12 @@ the MIT and GPL licenses:
 
 `@Return` - String;
 
+`@indentationCount` - Numeric (optional, used to set number of indentation (per level))
+
+`@indentationChar` - String (optional, indentation character. `SPACE` or `TAB`* will use 
+                             respective characters, other values will assume a single space (` `))
+
+                     *`TAB` may not be visible in your editor within the web browser.
 
 **USAGE:**
 
