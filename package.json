@@ -28,9 +28,11 @@
     "node": ">=0.4.9"
   },
   "devDependencies": {
-    "jasmine": "^2.6.0"
+    "mocha": "^3.4.2",
+    "should": "^11.2.1"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "mocha",
+    "test-watch": "mocha -w"
   }
 }
