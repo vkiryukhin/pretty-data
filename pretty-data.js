@@ -48,9 +48,23 @@
 */
 
 
-function pp() {
+function pp(steps = 2, stepChar = ' ') {
+	this.setSte0(steps, stepChar);
+};	
+
+pp.prototype.setStep = function(steps, stepChar){
 	this.shift = ['\n']; // array of shifts
-	this.step = '  '; // 2 spaces
+	this.stepChar = stepChar.length > 0 ? stepChar : ' ';
+
+	if ( isNaN(parseInt(steps)) ) {
+		this.step = this.stepChar;
+	} else {
+		this.step = '';
+		for(var i=0;i<steps;i++){
+			this.step += this.stepChar;
+		}
+	}
+	
 	var maxdeep = 100, // nesting level
       ix = 0;
 
@@ -59,7 +73,7 @@ function pp() {
 		this.shift.push(this.shift[ix]+this.step); 
 	}
 
-};	
+}
 	
 // ----------------------- XML section ----------------------------------------------------
 
