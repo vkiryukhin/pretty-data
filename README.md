@@ -1,5 +1,5 @@
 # sweet-data - Nodejs plugin
-## Fork of pretty-data
+** Fork of pretty-data **
 
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
