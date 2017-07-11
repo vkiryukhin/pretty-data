@@ -1,6 +1,6 @@
 {
   "name": "sweet-data",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Vadim Kiryukhin <vkiryukhin@gmail.com>",
   "description": "plugin to pretty-print or minify XML, JSON, CSS and SQL files, fork of pretty-data by Vadim Kiryukhin <vkiryukhin@gmail.com>",
   "contributors": [ 
