@@ -1,4 +1,6 @@
-function pp(steps = 2, stepChar = ' ') {
+function pp(steps, stepChar) {
+	steps = typeof steps !== 'undefined' ? steps : 2;
+	stepChar = typeof stepChar !== 'undefined' ? stepChar : ' ';
 	this.setStep(steps, stepChar);
 };	
 
