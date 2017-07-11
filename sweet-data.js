@@ -4,7 +4,12 @@ function pp(steps = 2, stepChar = ' ') {
 
 pp.prototype.setStep = function(steps, stepChar){
 	this.shift = ['\n']; // array of shifts
-	this.stepChar = stepChar.length > 0 ? stepChar : ' ';
+	
+	switch(stepChar){
+		case 'SPACE': this.stepChar = ' ';
+		case 'TAB': this.stepChar = '	';
+		default: this.stepChar = stepChar.length > 0 ? stepChar : ' ';
+	}
 
 	if ( isNaN(parseInt(steps)) ) {
 		this.step = this.stepChar;
