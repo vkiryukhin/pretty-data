@@ -6,8 +6,8 @@ pp.prototype.setStep = function(steps, stepChar){
 	this.shift = ['\n']; // array of shifts
 	
 	switch(stepChar){
-		case 'SPACE': this.stepChar = ' ';
-		case 'TAB': this.stepChar = '	';
+		case 'SPACE': this.stepChar = ' '; break;
+		case 'TAB': this.stepChar = '	'; break;
 		default: this.stepChar = stepChar.length > 0 ? stepChar : ' ';
 	}
 
