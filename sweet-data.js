@@ -1,55 +1,5 @@
-/**
-* pretty-data - nodejs plugin to pretty-print or minify data in XML, JSON and CSS formats.
-*  
-* Version - 0.40.0
-* Copyright (c) 2012 Vadim Kiryukhin
-* vkiryukhin @ gmail.com
-* http://www.eslinstructor.net/pretty-data/
-* 
-* Dual licensed under the MIT and GPL licenses:
-*   http://www.opensource.org/licenses/mit-license.php
-*   http://www.gnu.org/licenses/gpl.html
-*
-*	pd.xml(data ) - pretty print XML;
-*	pd.json(data) - pretty print JSON;
-*	pd.css(data ) - pretty print CSS;
-*	pd.sql(data)  - pretty print SQL;
-*
-*	pd.xmlmin(data [, preserveComments] ) - minify XML; 
-*	pd.jsonmin(data)                      - minify JSON; 
-*	pd.cssmin(data [, preserveComments] ) - minify CSS; 
-*	pd.sqlmin(data)                       - minify SQL; 
-*
-* PARAMETERS:
-*
-*	@data  			- String; XML, JSON, CSS or SQL text to beautify;
-* 	@preserveComments	- Bool (optional, used in minxml and mincss only); 
-*				  Set this flag to true to prevent removing comments from @text; 
-*	@Return 		- String;
-*	
-* USAGE:
-*	
-*	var pd  = require('pretty-data').pd;
-*
-*	var xml_pp   = pd.xml(xml_text);
-*	var xml_min  = pd.xmlmin(xml_text [,true]);
-*	var json_pp  = pd.json(json_text);
-*	var json_min = pd.jsonmin(json_text);
-*	var css_pp   = pd.css(css_text);
-*	var css_min  = pd.cssmin(css_text [, true]);
-*	var sql_pp   = pd.sql(sql_text);
-*	var sql_min  = pd.sqlmin(sql_text);
-*
-* TEST:
-*	comp-name:pretty-data$ node ./test/test_xml
-*	comp-name:pretty-data$ node ./test/test_json
-*	comp-name:pretty-data$ node ./test/test_css
-*	comp-name:pretty-data$ node ./test/test_sql
-*/
-
-
 function pp(steps = 2, stepChar = ' ') {
-	this.setSte0(steps, stepChar);
+	this.setStep(steps, stepChar);
 };	
 
 pp.prototype.setStep = function(steps, stepChar){
@@ -343,9 +293,7 @@ pp.prototype.sqlmin = function(text) {
     return text.replace(/\s{1,}/g," ").replace(/\s{1,}\(/,"(").replace(/\s{1,}\)/,")");
 }
 
-// --------------------------------------------------------------------------------------------
-
-exports.pd= new pp;	
+module.exports = new pp;	
 
 
 

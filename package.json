@@ -1,27 +1,30 @@
 {
-  "name": "pretty-data",
-  "version": "0.40.0",
+  "name": "sweet-data",
+  "version": "0.0.1",
   "author": "Vadim Kiryukhin <vkiryukhin@gmail.com>",
-  "description": "plugin to pretty-print or minify XML, JSON, CSS and SQL files",
+  "description": "plugin to pretty-print or minify XML, JSON, CSS and SQL files, fork of pretty-data by Vadim Kiryukhin <vkiryukhin@gmail.com>",
   "contributors": [ 
     {
-      "name": "Vadim Kiryukhin",
+      "name": "Brian",
       "email": "vkiryukhin@gmail.com"
-    } 
+    } ,
+    {
+      "name": "Alex"
+    }
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/vkiryukhin/pretty-data.git"
+    "url": "https://github.com/bgerhards/sweet-data.git"
   },
-  "main":"./pretty-data",
+  "main":"./sweet-data",
   "keywords": [
 	"pretty print",
 	"beautify",
 	"minify",
-        "XML",
+  "XML",
 	"JSON",
 	"CSS",
-        "SQL"
+  "SQL"
   ],
   "license": "MIT",
   "engine": {
