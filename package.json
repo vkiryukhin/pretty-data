@@ -1,30 +1,43 @@
 {
-  "name": "pretty-data",
-  "version": "0.40.0",
-  "author": "Vadim Kiryukhin <vkiryukhin@gmail.com>",
+  "name": "sweet-data",
+  "version": "0.0.7",
+  "author": "Brian Gerhards (https://github.com/bgerhards)",
   "description": "plugin to pretty-print or minify XML, JSON, CSS and SQL files",
-  "contributors": [ 
-    {
-      "name": "Vadim Kiryukhin",
-      "email": "vkiryukhin@gmail.com"
-    } 
+  "contributors": [
+    "Brian Gerhards (https://github.com/bgerhards)",
+    "Alex Staroselsky (https://github.com/alstar01)"
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/vkiryukhin/pretty-data.git"
+    "url": "https://github.com/bgerhards/sweet-data.git"
   },
-  "main":"./pretty-data",
+  "main": "./sweet-data",
   "keywords": [
-	"pretty print",
-	"beautify",
-	"minify",
-        "XML",
-	"JSON",
-	"CSS",
-        "SQL"
+    "pretty print",
+    "beautify",
+    "minify",
+    "XML",
+    "JSON",
+    "CSS",
+    "SQL",
+    "tabs",
+    "spaces"
   ],
   "license": "MIT",
   "engine": {
     "node": ">=0.4.9"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "should": "^11.2.1"
+  },
+  "files": [
+    "README.md",
+    "index.js",
+    "lib/"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "test-watch": "mocha -w"
   }
 }
