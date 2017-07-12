@@ -31,6 +31,11 @@
     "mocha": "^3.4.2",
     "should": "^11.2.1"
   },
+  "files": [
+    "README.md",
+    "index.js",
+    "lib/"
+  ],
   "scripts": {
     "test": "mocha",
     "test-watch": "mocha -w"
