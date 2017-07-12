@@ -1,13 +1,8 @@
-# pretty-data - Nodejs plugin
+# sweet-data - Nodejs plugin
+** Fork of pretty-data **
 
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
-
-**Version** - 0.40.0
-
-**Copyright** (c) 2012 Vadim Kiryukhin ( vkiryukhin @ gmail.com )
-
-**Home page:** [http://www.eslinstructor.net/pretty-data/](http://www.eslinstructor.net/pretty-data/) 
 
 **License:** Dual licensed under
 the MIT and GPL licenses:
@@ -18,21 +13,24 @@ the MIT and GPL licenses:
 
 ##Description
 
-* `pd.xml(data )` - pretty print XML; 
+* `sd.xml(data)` - pretty print XML; 
 
-* `pd.json(data)` - pretty print JSON; 
+* `sd.json(data)` - pretty print JSON; 
 
-* `pd.css(data )` - pretty print CSS; 
+* `sd.css(data)` - pretty print CSS; 
 
-* `pd.sql(data )` - pretty print SQL; 
+* `sd.sql(data)` - pretty print SQL; 
 
-* `pd.xmlmin(data [, preserveComments]) ` - minify XML; 
+* `sd.xmlmin(data [, preserveComments]) ` - minify XML; 
 
-* `pd.jsonmin(data)` - minify JSON text;
+* `sd.jsonmin(data)` - minify JSON text;
 
-* `pd.cssmin(data [, preserveComments] )` - minify CSS text; 
+* `sd.cssmin(data [, preserveComments] )` - minify CSS text; 
 
-* `pd.sqlmin(data)` - minify SQL text;
+* `sd.sqlmin(data)` - minify SQL text;
+
+* `sd.setStep([indentationCount, indentationChar])` - update indentation character(s) and character count (per depth). `SPACE` or `TAB` will use respective characters. Any other character provided will be assumed as ' '. Default values are `SPACE` and 2
+
 
 **PARAMETERS:**
 
@@ -43,26 +41,32 @@ the MIT and GPL licenses:
 
 `@Return` - String;
 
+`@indentationCount` - Numeric (optional, used to set number of indentation (per level))
+
+`@indentationChar` - String (optional, indentation character. `SPACE` or `TAB`* will use 
+                             respective characters, other values will assume a single space (` `))
+
+                     *`TAB` may not be visible in your editor within the web browser.
 
 **USAGE:**
 
-`var pd = require('pretty-data').pd; `
+`var sd = require('sweet-data'); `
 
-`var xml_pp = pd.xml(data); `
+`var xml_pp = sd.xml(data); `
 
-`var xml_min = pd.xmlmin(data [,true]);` 
+`var xml_min = sd.xmlmin(data [,true]);` 
 
-`var json_pp = pd.json(data);` 
+`var json_pp = sd.json(data);` 
 
-`var json_min = pd.jsonmin(data);` 
+`var json_min = sd.jsonmin(data);` 
 
-`var css_pp = pd.css(data); `
+`var css_pp = sd.css(data); `
 
-`var css_min = pd.cssmin(data [, true]);`
+`var css_min = sd.cssmin(data [, true]);`
 
-`var sql_pp = pd.sql(data);` 
+`var sql_pp = sd.sql(data);` 
 
-`var sql_min = pd.sqlmin(data);` 
+`var sql_min = sd.sqlmin(data);` 
 
 
 
