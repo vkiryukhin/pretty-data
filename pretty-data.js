@@ -1,11 +1,11 @@
 /**
 * pretty-data - nodejs plugin to pretty-print or minify data in XML, JSON and CSS formats.
-*  
+*
 * Version - 0.40.0
 * Copyright (c) 2012 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/pretty-data/
-* 
+*
 * Dual licensed under the MIT and GPL licenses:
 *   http://www.opensource.org/licenses/mit-license.php
 *   http://www.gnu.org/licenses/gpl.html
@@ -15,20 +15,20 @@
 *	pd.css(data ) - pretty print CSS;
 *	pd.sql(data)  - pretty print SQL;
 *
-*	pd.xmlmin(data [, preserveComments] ) - minify XML; 
-*	pd.jsonmin(data)                      - minify JSON; 
-*	pd.cssmin(data [, preserveComments] ) - minify CSS; 
-*	pd.sqlmin(data)                       - minify SQL; 
+*	pd.xmlmin(data [, preserveComments] ) - minify XML;
+*	pd.jsonmin(data)                      - minify JSON;
+*	pd.cssmin(data [, preserveComments] ) - minify CSS;
+*	pd.sqlmin(data)                       - minify SQL;
 *
 * PARAMETERS:
 *
 *	@data  			- String; XML, JSON, CSS or SQL text to beautify;
-* 	@preserveComments	- Bool (optional, used in minxml and mincss only); 
-*				  Set this flag to true to prevent removing comments from @text; 
+* 	@preserveComments	- Bool (optional, used in minxml and mincss only);
+*				  Set this flag to true to prevent removing comments from @text;
 *	@Return 		- String;
-*	
+*
 * USAGE:
-*	
+*
 *	var pd  = require('pretty-data').pd;
 *
 *	var xml_pp   = pd.xml(xml_text);
@@ -51,16 +51,15 @@
 function pp() {
 	this.shift = ['\n']; // array of shifts
 	this.step = '  '; // 2 spaces
-	var maxdeep = 100, // nesting level
-      ix = 0;
+    var ix = 0;
 
-	// initialize array with shifts //
-	for(ix=0;ix<maxdeep;ix++){
-		this.shift.push(this.shift[ix]+this.step); 
+	// initialize array with shifts; nesting level == 100 //
+	for(ix=0;ix<100;ix++){
+		this.shift.push(this.shift[ix]+this.step);
 	}
 
-};	
-	
+}
+
 // ----------------------- XML section ----------------------------------------------------
 
 pp.prototype.xml = function(text) {
@@ -78,57 +77,57 @@ pp.prototype.xml = function(text) {
 
 		for(ix=0;ix<len;ix++) {
 			// start comment or <![CDATA[...]]> or <!DOCTYPE //
-			if(ar[ix].search(/<!/) > -1) { 
+			if(ar[ix].search(/<!/) > -1) {
 				str += this.shift[deep]+ar[ix];
-				inComment = true; 
+				inComment = true;
 				// end comment  or <![CDATA[...]]> //
-				if(ar[ix].search(/-->/) > -1 || ar[ix].search(/\]>/) > -1 || ar[ix].search(/!DOCTYPE/) > -1 ) { 
-					inComment = false; 
+				if(ar[ix].search(/-->/) > -1 || ar[ix].search(/\]>/) > -1 || ar[ix].search(/!DOCTYPE/) > -1 ) {
+					inComment = false;
 				}
-			} else 
+			} else
 			// end comment  or <![CDATA[...]]> //
-			if(ar[ix].search(/-->/) > -1 || ar[ix].search(/\]>/) > -1) { 
+			if(ar[ix].search(/-->/) > -1 || ar[ix].search(/\]>/) > -1) {
 				str += ar[ix];
-				inComment = false; 
-			} else 
+				inComment = false;
+			} else
 			// <elm></elm> //
 			if( /^<\w/.exec(ar[ix-1]) && /^<\/\w/.exec(ar[ix]) &&
-				/^<[\w:\-\.\,]+/.exec(ar[ix-1]) == /^<\/[\w:\-\.\,]+/.exec(ar[ix])[0].replace('/','')) { 
+				/^<[\w:\-\.\,]+/.exec(ar[ix-1]) == /^<\/[\w:\-\.\,]+/.exec(ar[ix])[0].replace('/','')) {
 				str += ar[ix];
 				if(!inComment) deep--;
 			} else
 			 // <elm> //
 			if(ar[ix].search(/<\w/) > -1 && ar[ix].search(/<\//) == -1 && ar[ix].search(/\/>/) == -1 ) {
 				str = !inComment ? str += this.shift[deep++]+ar[ix] : str += ar[ix];
-			} else 
+			} else
 			 // <elm>...</elm> //
 			if(ar[ix].search(/<\w/) > -1 && ar[ix].search(/<\//) > -1) {
 				str = !inComment ? str += this.shift[deep]+ar[ix] : str += ar[ix];
-			} else 
+			} else
 			// </elm> //
-			if(ar[ix].search(/<\//) > -1) { 
+			if(ar[ix].search(/<\//) > -1) {
 				str = !inComment ? str += this.shift[--deep]+ar[ix] : str += ar[ix];
-			} else 
+			} else
 			// <elm/> //
-			if(ar[ix].search(/\/>/) > -1 ) { 
+			if(ar[ix].search(/\/>/) > -1 ) {
 				str = !inComment ? str += this.shift[deep]+ar[ix] : str += ar[ix];
-			} else 
+			} else
 			// <? xml ... ?> //
-			if(ar[ix].search(/<\?/) > -1) { 
+			if(ar[ix].search(/<\?/) > -1) {
 				str += this.shift[deep]+ar[ix];
-			} else 
+			} else
 			// xmlns //
-			if( ar[ix].search(/xmlns\:/) > -1  || ar[ix].search(/xmlns\=/) > -1) { 
+			if( ar[ix].search(/xmlns\:/) > -1  || ar[ix].search(/xmlns\=/) > -1) {
 				str += this.shift[deep]+ar[ix];
-			} 
-			
+			}
+
 			else {
 				str += ar[ix];
 			}
 		}
-		
+
 	return  (str[0] == '\n') ? str.slice(1) : str;
-}
+};
 
 // ----------------------- JSON section ----------------------------------------------------
 
@@ -141,7 +140,7 @@ pp.prototype.json = function(text) {
 		return JSON.stringify(text, null, this.step);
 	}
 	return null;
-}
+};
 
 // ----------------------- CSS section ----------------------------------------------------
 
@@ -159,16 +158,16 @@ pp.prototype.css = function(text) {
 		deep = 0,
 		str = '',
 		ix = 0;
-		
+
 		for(ix=0;ix<len;ix++) {
 
-			if( /\{/.exec(ar[ix]))  { 
+			if( /\{/.exec(ar[ix]))  {
 				str += this.shift[deep++]+ar[ix];
-			} else 
-			if( /\}/.exec(ar[ix]))  { 
+			} else
+			if( /\}/.exec(ar[ix]))  {
 				str += this.shift[--deep]+ar[ix];
 			} else
-			if( /\*\\/.exec(ar[ix]))  { 
+			if( /\*\\/.exec(ar[ix]))  {
 				str += this.shift[deep]+ar[ix];
 			}
 			else {
@@ -176,12 +175,12 @@ pp.prototype.css = function(text) {
 			}
 		}
 		return str.replace(/^\n{1,}/,'');
-}
+};
 
 // ----------------------- SQL section ----------------------------------------------------
 
 function isSubquery(str, parenthesisLevel) {
-  return  parenthesisLevel - (str.replace(/\(/g,'').length - str.replace(/\)/g,'').length )
+  return  parenthesisLevel - (str.replace(/\(/g,'').length - str.replace(/\)/g,'').length );
 }
 
 function split_sql(str, tab) {
@@ -219,8 +218,8 @@ function split_sql(str, tab) {
         //.replace(/\,/ig,",~::~"+tab+tab+"")
         .replace(/ ALL /ig," ALL ")
         .replace(/ AS /ig," AS ")
-        .replace(/ ASC /ig," ASC ") 
-        .replace(/ DESC /ig," DESC ") 
+        .replace(/ ASC /ig," ASC ")
+        .replace(/ DESC /ig," DESC ")
         .replace(/ DISTINCT /ig," DISTINCT ")
         .replace(/ EXISTS /ig," EXISTS ")
         .replace(/ NOT /ig," NOT ")
@@ -239,9 +238,7 @@ pp.prototype.sql = function(text) {
         len = ar_by_quote.length,
         ar = [],
         deep = 0,
-        tab = this.step,//+this.step,
-        inComment = true,
-        inQuote = false,
+        tab = this.step,
         parenthesisLevel = 0,
         str = '',
         ix = 0;
@@ -260,31 +257,31 @@ pp.prototype.sql = function(text) {
 
         parenthesisLevel = isSubquery(ar[ix], parenthesisLevel);
 
-        if( /\s{0,}\s{0,}SELECT\s{0,}/.exec(ar[ix]))  { 
-            ar[ix] = ar[ix].replace(/\,/g,",\n"+tab+tab+"")
-        } 
+        if( /\s{0,}\s{0,}SELECT\s{0,}/.exec(ar[ix]))  {
+            ar[ix] = ar[ix].replace(/\,/g,",\n"+tab+tab+"");
+        }
 
-        if( /\s{0,}\(\s{0,}SELECT\s{0,}/.exec(ar[ix]))  { 
+        if( /\s{0,}\(\s{0,}SELECT\s{0,}/.exec(ar[ix]))  {
             deep++;
             str += this.shift[deep]+ar[ix];
-        } else 
-        if( /\'/.exec(ar[ix]) )  { 
+        } else
+        if( /\'/.exec(ar[ix]) )  {
             if(parenthesisLevel<1 && deep) {
                 deep--;
             }
             str += ar[ix];
         }
-        else  { 
+        else  {
             str += this.shift[deep]+ar[ix];
             if(parenthesisLevel<1 && deep) {
                 deep--;
             }
-        } 
+        }
     }
 
     str = str.replace(/^\n{1,}/,'').replace(/\n{1,}/g,"\n");
     return str;
-}
+};
 
 // ----------------------- min section ----------------------------------------------------
 
@@ -292,16 +289,16 @@ pp.prototype.xmlmin = function(text, preserveComments) {
 
 	var str = preserveComments ? text
 				   : text.replace(/\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/g,"");
-	return  str.replace(/>\s{0,}</g,"><"); 
-}
+	return  str.replace(/>\s{0,}</g,"><");
+};
 
 pp.prototype.jsonmin = function(text) {
-								  
-    return  text.replace(/\s{0,}\{\s{0,}/g,"{")
+
+    return  text.replace(/\s{0,}\{\s{1,}/g,"{")
                 .replace(/\s{0,}\[$/g,"[")
                 .replace(/\[\s{0,}/g,"[")
                 .replace(/:\s{0,}\[/g,':[')
-                .replace(/\s{0,}\}\s{0,}/g,"}")
+                .replace(/\s{1,}\}\s{0,}/g,"}")
                 .replace(/\s{0,}\]\s{0,}/g,"]")
                 .replace(/\"\s{0,}\,/g,'",')
                 .replace(/\,\s{0,}\"/g,',"')
@@ -310,11 +307,11 @@ pp.prototype.jsonmin = function(text) {
                 .replace(/:\s{0,}\[/g,':[')
                 .replace(/\,\s{0,}\[/g,',[')
                 .replace(/\,\s{2,}/g,', ')
-                .replace(/\]\s{0,},\s{0,}\[/g,'],[');   
-}
+                .replace(/\]\s{0,},\s{0,}\[/g,'],[');
+};
 
 pp.prototype.cssmin = function(text, preserveComments) {
-	
+
 	var str = preserveComments ? text
 				   : text.replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g,"") ;
 	return str.replace(/\s{1,}/g,' ')
@@ -323,22 +320,12 @@ pp.prototype.cssmin = function(text, preserveComments) {
 			  .replace(/\;\s{1,}/g,";")
 			  .replace(/\/\*\s{1,}/g,"/*")
 			  .replace(/\*\/\s{1,}/g,"*/");
-}	
+};
 
 pp.prototype.sqlmin = function(text) {
     return text.replace(/\s{1,}/g," ").replace(/\s{1,}\(/,"(").replace(/\s{1,}\)/,")");
-}
+};
 
 // --------------------------------------------------------------------------------------------
 
-exports.pd= new pp;	
-
-
-
-
-
-
-
-
-
-
+exports.pd= new pp();
