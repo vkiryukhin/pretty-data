@@ -3,7 +3,7 @@
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
 
-**Version** - 0.40.0
+**Version** - 0.50.0
 
 **Copyright** (c) 2012 Vadim Kiryukhin ( vkiryukhin @ gmail.com )
 
