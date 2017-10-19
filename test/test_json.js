@@ -1,5 +1,5 @@
 
-var json  = '{"menu":{"id": "file","welcome": "text{{variable}}text","value": \n[[1,2,3],[4,5,6] ],\n"popup":{"menuitem":[{"value":    ["one","two"],\n"onclick":"CreateNewDoc()"},{"value":"Close","onclick":"CloseDoc()"}, {\n"welcome": "abc {{variable}} xyz"\n}]}}}',
+var json  = '{"menu":{"id": "file","welcome": "text{{variable}}text","value": \n[[1,2,3],[4,5,6] ],\n"popup":{"menuitem":[{"value":    ["one","two"],\n"onclick":"CreateNewDoc()"},{"value":"Close","onclick":"CloseDoc()"}, {\n"welcome": "abc   {{variable}}   xyz"\n}]}}}',
 
     json_pretty  = require('../pretty-data').pd.json(json),      // pretty original
     json_min  = require('../pretty-data').pd.jsonmin(json),      // min original
