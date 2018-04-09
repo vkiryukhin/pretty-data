@@ -226,6 +226,7 @@ function split_sql(str, tab) {
         .replace(/ NULL /ig," NULL ")
         .replace(/ LIKE /ig," LIKE ")
         .replace(/\s{0,}SELECT /ig,"SELECT ")
+        .replace(/EXPLAIN\s{0,}/ig,"EXPLAIN ")
         .replace(/~::~{1,}/g,"~::~")
         .split('~::~');
 }
