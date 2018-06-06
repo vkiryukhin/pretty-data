@@ -14,6 +14,7 @@
     "url": "http://github.com/vkiryukhin/pretty-data.git"
   },
   "main":"./pretty-data",
+  "types": "pretty-data.d.ts",
   "keywords": [
 	"pretty print",
 	"beautify",
