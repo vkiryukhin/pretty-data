@@ -15,24 +15,26 @@
 *	pd.css(data ) - pretty print CSS;
 *	pd.sql(data)  - pretty print SQL;
 *
-*	pd.xmlmin(data [, preserveComments] ) - minify XML;
-*	pd.jsonmin(data)                      - minify JSON;
-*	pd.cssmin(data [, preserveComments] ) - minify CSS;
-*	pd.sqlmin(data)                       - minify SQL;
+*	pd.xmlmin(data [, preserveComments, options] ) - minify XML;
+*	pd.jsonmin(data)                               - minify JSON;
+*	pd.cssmin(data [, preserveComments] )          - minify CSS;
+*	pd.sqlmin(data)                                - minify SQL;
 *
 * PARAMETERS:
 *
-*	@data  			- String; XML, JSON, CSS or SQL text to beautify;
-* 	@preserveComments	- Bool (optional, used in minxml and mincss only);
-*				  Set this flag to true to prevent removing comments from @text;
-*	@Return 		- String;
+*	@data			- String; XML, JSON, CSS or SQL text to beautify;
+* 	@preserveComments	- Bool (optional, used in xmlmin and cssmin only);
+*				  Set this flag to true to prevent removing comments from @data;
+*	@options		- Object (optional, used in xmlmin only);
+*				  Use this object to set additional flags flags;
+*	@Return			- String;
 *
 * USAGE:
 *
 *	var pd  = require('pretty-data').pd;
 *
 *	var xml_pp   = pd.xml(xml_text);
-*	var xml_min  = pd.xmlmin(xml_text [,true]);
+*	var xml_min  = pd.xmlmin(xml_text [, true, { removeWhitespaceBetweenTags: false }]);
 *	var json_pp  = pd.json(json_text);
 *	var json_min = pd.jsonmin(json_text);
 *	var css_pp   = pd.css(css_text);
@@ -285,11 +287,10 @@ pp.prototype.sql = function(text) {
 
 // ----------------------- min section ----------------------------------------------------
 
+const minifyXml = require("minify-xml").minify;
 pp.prototype.xmlmin = function(text, preserveComments) {
-
-	var str = preserveComments ? text
-				   : text.replace(/\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/g,"");
-	return  str.replace(/>\s{0,}</g,"><");
+	return minifyXml(text, typeof preserveComments === "boolean" ?
+		{ removeComments: !preserveComments } : preserveComments);
 };
 
 pp.prototype.jsonmin = function(text) {

@@ -13,18 +13,21 @@
     "type": "git",
     "url": "http://github.com/vkiryukhin/pretty-data.git"
   },
-  "main":"./pretty-data",
+  "main": "./pretty-data",
   "keywords": [
-	"pretty print",
-	"beautify",
-	"minify",
-        "XML",
-	"JSON",
-	"CSS",
-        "SQL"
+    "pretty print",
+    "beautify",
+    "minify",
+    "XML",
+    "JSON",
+    "CSS",
+    "SQL"
   ],
   "license": "MIT",
   "engine": {
     "node": ">=0.4.9"
+  },
+  "dependencies": {
+    "minify-xml": "^2.1.0"
   }
 }
