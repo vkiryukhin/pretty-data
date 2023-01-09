@@ -289,7 +289,10 @@ pp.prototype.xmlmin = function(text, preserveComments) {
 
 	var str = preserveComments ? text
 				   : text.replace(/\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/g,"");
-	return  str.replace(/>\s{0,}</g,"><");
+	return str.replace(/>\s{0,}</g,"><").replace(/\<([^>]+)\>/g,function(a){
+		// Remove whitespace & newlines between attribute declarations.
+		return a.replace(/\n/g,' ').replace(/\s+/g,' ');
+	}); 
 };
 
 pp.prototype.jsonmin = function(text) {

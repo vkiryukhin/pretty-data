@@ -1,6 +1,7 @@
 {
   "name": "pretty-data",
   "version": "0.50.0",
+  "homepage": "https://github.com/vkiryukhin/pretty-data",
   "author": "Vadim Kiryukhin <vkiryukhin@gmail.com>",
   "description": "plugin to pretty-print or minify XML, JSON, CSS and SQL files",
   "contributors": [
